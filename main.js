@@ -10,8 +10,11 @@ document.querySelector("#open-nav-menu").addEventListener("click", function(){
 });
 
 // area de previsão do tempo
-const greetingText = "Good morning!";
+const greetingText = "Good Afternoon!";
 const weatherCondition = "Sunny";
-const userLocatiosn = "New Yourk";
-let temperature = 22.8673;
-let weatherText = "The weather is cloudy in London and it's 22°C outside.";
+const userLocatiosn = "Rio de Janeiro";
+let temperature = 35.78;
+let weatherText = `The weather is ${weatherCondition} in ${userLocatiosn} and it's ${temperature.toFixed(1)}°C outside.`;
+
+document.querySelector("#greeting").innerHTML = greetingText;
+document.querySelector("p#weather").innerHTML = weatherText;
