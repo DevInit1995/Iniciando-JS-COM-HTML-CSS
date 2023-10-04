@@ -10,11 +10,21 @@ document.querySelector("#open-nav-menu").addEventListener("click", function(){
 });
 
 // area de previsão do tempo
+
+function celsiusToFahr(temperature){
+    let fahr = (temperature * 9/5) + 32;
+    return fahr;
+}
+
+
 const greetingText = "Good Afternoon!";
 const weatherCondition = "Sunny";
 const userLocatiosn = "Rio de Janeiro";
-let temperature = 35.78;
-let weatherText = `The weather is ${weatherCondition} in ${userLocatiosn} and it's ${temperature.toFixed(1)}°C outside.`;
+let temperature = 25
+
+alert("The temperature outside is " + celsiusToFahr(temperature) + "°F.");
+
+let weatherText = `The weather is ${weatherCondition} in ${userLocatiosn} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
 
 document.querySelector("#greeting").innerHTML = greetingText;
 document.querySelector("p#weather").innerHTML = weatherText;
