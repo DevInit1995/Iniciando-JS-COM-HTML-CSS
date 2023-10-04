@@ -19,15 +19,24 @@ function celsiusToFahr(temperature){
 const greetingText = "Good Afternoon!";
 const weatherCondition = "Sunny";
 const userLocations = "Rio de Janeiro";
-let temperature = 25
+let temperature = 30;
 
 alert("The temperature outside is " + celsiusToFahr(temperature) + "°F.");
 
-let weatherText = `The weather is ${weatherCondition} in ${userLocations} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
+let celsiusText = `The weather is ${weatherCondition} in ${userLocations} and it's ${temperature.toFixed(1)}°C outside.`;
+let fahrText = `The weather is ${weatherCondition} in ${userLocations} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
 
 document.querySelector("#greeting").innerHTML = greetingText;
-document.querySelector("p#weather").innerHTML = weatherText;
+document.querySelector("p#weather").innerHTML = celsiusText;
 
 document.querySelector(".weather-group").addEventListener("click", function(e){
-    console.log(e.target.id);
-})
+    // celsius
+    // fahr
+    if (e.target.id == "celsius"){
+        document.querySelector("p#weather").innerHTML = celsiusText;
+    } else if (e.target.id == "fahr"){
+        document.querySelector("p#weather").innerHTML = fahrText;;
+    }
+
+
+});
