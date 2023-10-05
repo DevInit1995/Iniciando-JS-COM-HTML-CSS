@@ -170,7 +170,25 @@ function galleryHandler() {
           </div> */
 
 function productsHandler() {
-    console.log("test");
+
+    let productsSection = document.querySelector(".products-area");
+
+    // Correr um loop pelo array de produtos e criar um elemento ("product-item") html para cada um deles
+    products.forEach(function(product, index) {
+        // criando o elemento HTML para os produtos individuais
+        let productElm = document.createElement("div");
+        productElm.classList.add("product-item");
+
+        // criando a imagem do produto
+        let productImage = document.createElement("img");
+        productImage.src = product.image;
+        productImage.alt = "Image for " + product.title;
+
+        // Add todos os elemento HTML filhos de produtos 
+        productElm.append(productImage);
+        // Add o produto individual na sessão de produtos
+        productsSection.append(productElm);
+    });
 }
 
 // Carregamento da página
