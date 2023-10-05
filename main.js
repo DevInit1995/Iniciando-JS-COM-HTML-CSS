@@ -37,6 +37,14 @@ document.querySelector(".weather-group").addEventListener("click", function(e){
     } else if (e.target.id == "fahr"){
         document.querySelector("p#weather").innerHTML = fahrText;;
     }
-
-
 });
+
+// new Date().getHours();
+// new Date().getMinutes();
+// new Date().getSeconds();
+
+let localTime = new Date();
+
+document.querySelector("span[data-time=hours]").textContent = localTime.getHours();
+document.querySelector("span[data-time=minutes]").textContent = localTime.getMinutes();
+document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds();
