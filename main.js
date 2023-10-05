@@ -50,10 +50,6 @@ setInterval(function(){
 
 const galleryImages = [
     {
-        src: "./assets/gallery/img1.png",
-        alt: "Thumbnail Image 1"
-    },
-    {
         src: "./assets/gallery/image1.jpg",
         alt: "Thumbnail Image 1"
     },
@@ -64,7 +60,8 @@ const galleryImages = [
     {
         src: "./assets/gallery/image3.jpg",
         alt: "Thumbnail Image 3"
-    },
+    }
+    
 ];
 
 /* for (let i in galleryImages){
@@ -85,6 +82,21 @@ galleryImages.forEach(function(images, index){
     thumb.alt = images.alt;
     thumb.dataset.arrayIndex = index;
     thumb.dataset.selected = index === 0 ? true : false;
+
+    thumb.addEventListener("click", function(e){
+        let selectedIndex = e.target.dataset.arrayIndex;
+        let selectedImage = galleryImages[selectedIndex];
+        mainImage.src = selectedImage.src;
+        mainImage.alt = selectedImage.alt;
+
+        thumbnails.querySelectorAll("img").forEach(function(img){
+            img.dataset.selected = false;
+        });
+
+        e.target.dataset.selected = true;
+
+    });
+
     thumbnails.appendChild(thumb);
 });
 
