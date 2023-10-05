@@ -67,7 +67,11 @@ const galleryImages = [
     console.log(galleryImages[i]);
 } */
 
+let mainImage = document.querySelector("#gallery > img");
+mainImage.src = galleryImages[0].src;
+mainImage.alt = galleryImages[0].alt;
+
 galleryImages.forEach(function(images, index){
-    console.log(images);
+    
 });
 
