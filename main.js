@@ -84,7 +84,7 @@ galleryImages.forEach(function(images, index){
     thumb.src = images.src;
     thumb.alt = images.alt;
     thumb.dataset.arrayIndex = index;
-    thumb.dataset.selected = false;
+    thumb.dataset.selected = index === 0 ? true : false;
     thumbnails.appendChild(thumb);
 });
 
