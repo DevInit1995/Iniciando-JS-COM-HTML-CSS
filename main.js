@@ -50,6 +50,10 @@ setInterval(function(){
 
 const galleryImages = [
     {
+        src: "./assets/gallery/img1.png",
+        alt: "Thumbnail Image 1"
+    },
+    {
         src: "./assets/gallery/image1.jpg",
         alt: "Thumbnail Image 1"
     },
@@ -68,10 +72,19 @@ const galleryImages = [
 } */
 
 let mainImage = document.querySelector("#gallery > img");
+let thumbnails = document.querySelector("#gallery .thumbnails");
+
 mainImage.src = galleryImages[0].src;
 mainImage.alt = galleryImages[0].alt;
-
+//<img src="./assets/gallery/image1.jpg" 
+//alt="Thumbnail Image 1" 
+//data-array-index="0" data-selected="true"></img>
 galleryImages.forEach(function(images, index){
-    
+    let thumb = document.createElement("img");
+    thumb.src = images.src;
+    thumb.alt = images.alt;
+    thumb.dataset.arrayIndex = index;
+    thumb.dataset.selected = false;
+    thumbnails.appendChild(thumb);
 });
 
