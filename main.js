@@ -63,6 +63,11 @@ const galleryImages = [
     },
 ];
 
-for (let i in galleryImages){
+/* for (let i in galleryImages){
     console.log(galleryImages[i]);
-}
+} */
+
+galleryImages.forEach(function(images, index){
+    console.log(images);
+});
+
