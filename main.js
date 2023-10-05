@@ -45,3 +45,9 @@ setInterval(function(){
     document.querySelector("span[data-time=minutes]").textContent = localTime.getMinutes().toString().padStart(2, "0");
     document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds().toString().padStart(2, "0");
 },1000);
+
+let animals = {"name": "dog", "color": "white"};
+
+for(let a in animals){
+    console.log(a + ": " + animals[a]);
+}
