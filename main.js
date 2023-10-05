@@ -46,8 +46,23 @@ setInterval(function(){
     document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds().toString().padStart(2, "0");
 },1000);
 
-let animals = {"name": "dog", "color": "white"};
+// Sessão de galeria
 
-for(let a in animals){
-    console.log(a + ": " + animals[a]);
+const galleryImages = [
+    {
+        src: "./assets/gallery/image1.jpg",
+        alt: "Thumbnail Image 1"
+    },
+    {
+        src: "./assets/gallery/image2.jpg",
+        alt: "Thumbnail Image 2"
+    },
+    {
+        src: "./assets/gallery/image3.jpg",
+        alt: "Thumbnail Image 3"
+    },
+];
+
+for (let i in galleryImages){
+    console.log(galleryImages[i]);
 }
