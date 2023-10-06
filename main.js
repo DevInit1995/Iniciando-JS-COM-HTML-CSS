@@ -184,8 +184,37 @@ function productsHandler() {
         productImage.src = product.image;
         productImage.alt = "Image for " + product.title;
 
+        // criar a sessão de detalhes do produto
+        let productDetails = document.createElement("div");
+        productDetails.classList.add("product-details");
+
+        // Criando titulo, author, preço-titulo e preço
+        let productTitle = document.createElement("h3");
+        productTitle.classList.add("product-title");
+        productTitle.textContent = product.title;
+        
+        let productAuthor = document.createElement("p");
+        productAuthor.classList.add("product-author");
+        productAuthor.textContent = product.author;
+       
+        let priceTitle = document.createElement("p");
+        priceTitle.classList.add("price-title");
+        priceTitle.textContent = "Price";
+        
+        let productPrice = document.createElement("p");
+        productPrice.classList.add("product-price");
+        productPrice.textContent = product.price > 0 ? "$" + product.price.toFixed(2) : "Free";
+
+        // Acrescenta o detalhe de produtos
+        productDetails.append(productTitle);
+        productDetails.append(productAuthor);
+        productDetails.append(priceTitle);
+        productDetails.append(productPrice);
+
         // Add todos os elemento HTML filhos de produtos 
         productElm.append(productImage);
+        productElm.append(productDetails);
+
         // Add o produto individual na sessão de produtos
         productsSection.append(productElm);
     });
