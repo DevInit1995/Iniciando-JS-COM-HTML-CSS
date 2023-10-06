@@ -5,7 +5,7 @@ que corresponde ao seletor ou grupo de seletores especificado.*/
 sempre que o evento especificado for entregue ao destino*/
 
 const weatherAPIKey = "ab115eaefcccfdb3185cca6dc4088903";
-const weatherAPIURL = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`
+const weatherAPIURL = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`;
 // Arrays de galeria
 const galleryImages = [
     {
@@ -94,11 +94,7 @@ function greetingHandler() {
     } else {
         greetingText = "Welcome!";
     }
-
-    const weatherCondition = "Sunny";
-    const userLocations = "Rio de Janeiro";
-    let temperature = 30;
-
+    
     //alert("The temperature outside is " + celsiusToFahr(temperature) + "°F.");
 
     let celsiusText = `The weather is ${weatherCondition} in ${userLocations} and it's ${temperature.toFixed(1)}°C outside.`;
@@ -260,12 +256,17 @@ navigator.geolocation.getCurrentPosition( position => {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
     let url = weatherAPIURL
-    .replace("{lat}", latitude)
-    .replace("{lon}", longitude)
-    .replace("{API Key}", weatherAPIKey);
-    fetch("https://opentdb.com/api.php?amount=10")
+        .replace("{lat}", latitude)
+        .replace("{lon}", longitude)
+        .replace("{API Key}", weatherAPIKey);
+    fetch(url)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => {
+        console.log(data);
+        const condition = "sunny";
+        const location = "Rio de Janeiro";
+        let temperature = 30;
+    });
 });
 
 // Carregamento da página
