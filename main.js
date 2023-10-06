@@ -218,6 +218,9 @@ function productsHandler() {
         // Add o produto individual na sessão de produtos
         productsSection.append(productElm);
     });
+
+    let totalProducts = products.length;
+    document.querySelector(".products-filter label[for=all] span.product-amount").textContent = totalProducts;
 }
 
 // Carregamento da página
