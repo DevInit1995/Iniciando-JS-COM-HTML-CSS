@@ -253,7 +253,9 @@ function footerHandler() {
 }
 
 navigator.geolocation.getCurrentPosition( position => {
-    
+    fetch("https://opentdb.com/api.php?amount=10")
+    .then(response => response.json())
+    .then(data => console.log(data));
 });
 
 // Carregamento da página
