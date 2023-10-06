@@ -248,6 +248,11 @@ function productsHandler() {
     });
 }    
  
+//© 2023 All Rights Reserved
+function footerHandler() {
+    let currentYear = new Date().getFullYear();
+    document.querySelector("footer").textContent = `© ${currentYear} - All Rights Reserved`;
+}
 
 // Carregamento da página
 menuHandler();
@@ -255,4 +260,5 @@ clockHandler();
 greetingHandler();
 galleryHandler();
 productsHandler();
+footerHandler();
 
