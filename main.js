@@ -158,30 +158,13 @@ function galleryHandler() {
     });
 }
 
-//Sessão de produtos
-/* <div class="product-item">
-             <img src="./assets/products/img6.png" alt="AstroFiction">
-             <div class="product-details">
-                <h3 class="product-title">AstroFiction</h3>
-                <p class="product-author">John Doe</p>
-                <p class="price-title">Price</p>
-                <p class="product-price">$ 49.90</p>
-             </div>
-          </div> */
-
-function productsHandler() {
-
+function populateProducts(productList){
+    
     let productsSection = document.querySelector(".products-area");
-
-    let freeProducts = products.filter(function(item){
-        return !item.price || item.price <= 0;
-    });
-    let paidProducts = products.filter(function(item){
-        return item.price > 0;
-    })
+    productsSection.textContent = "";
 
     // Correr um loop pelo array de produtos e criar um elemento ("product-item") html para cada um deles
-    products.forEach(function(product, index) {
+    productList.forEach(function(product, index) {
         // criando o elemento HTML para os produtos individuais
         let productElm = document.createElement("div");
         productElm.classList.add("product-item");
@@ -225,11 +208,44 @@ function productsHandler() {
         // Add o produto individual na sessão de produtos
         productsSection.append(productElm);
     });
+}
 
-    let totalProducts = products.length;
+//Sessão de produtos
+/* <div class="product-item">
+             <img src="./assets/products/img6.png" alt="AstroFiction">
+             <div class="product-details">
+                <h3 class="product-title">AstroFiction</h3>
+                <p class="product-author">John Doe</p>
+                <p class="price-title">Price</p>
+                <p class="product-price">$ 49.90</p>
+             </div>
+          </div> */
+
+function productsHandler() {
+    let freeProducts = products.filter(function(item){
+        return !item.price || item.price <= 0;
+    });
+    let paidProducts = products.filter(function(item){
+        return item.price > 0;
+    });
+
+    populateProducts(products);
+
+   // let totalProducts = products.length;
     document.querySelector(".products-filter label[for=all] span.product-amount").textContent = products.length;
     document.querySelector(".products-filter label[for=paid] span.product-amount").textContent = paidProducts.length;
     document.querySelector(".products-filter label[for=free] span.product-amount").textContent = freeProducts.length;
+
+    let productsFilter = document.querySelector(".products-filter");
+    productsFilter.addEventListener("click", function(e){
+        if (e.target.id === "all") {
+            populateProducts(products);
+        } else if (e.target.id === "paid") {
+            populateProducts(products);
+        } else if (e.target.id === "free") {
+            populateProducts(freeProducts);
+        }
+    });
 }    
  
 
