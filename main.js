@@ -222,12 +222,10 @@ function populateProducts(productList){
           </div> */
 
 function productsHandler() {
-    let freeProducts = products.filter(function(item){
-        return !item.price || item.price <= 0;
-    });
-    let paidProducts = products.filter(function(item){
-        return item.price > 0;
-    });
+    
+    let freeProducts = products.filter( item => !item.price || item.price <= 0);
+
+    let paidProducts = products.filter( item => item.price > 0 );
 
     populateProducts(products);
 
@@ -254,8 +252,8 @@ function footerHandler() {
     document.querySelector("footer").textContent = `© ${currentYear} - All Rights Reserved`;
 }
 
-navigator.geolocation.getCurrentPosition(function(position){
-    console.log(position);
+navigator.geolocation.getCurrentPosition( position => {
+    
 });
 
 // Carregamento da página
