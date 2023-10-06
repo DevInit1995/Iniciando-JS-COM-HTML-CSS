@@ -173,6 +173,13 @@ function productsHandler() {
 
     let productsSection = document.querySelector(".products-area");
 
+    let freeProducts = products.filter(function(item){
+        return !item.price || item.price <= 0;
+    });
+    let paidProducts = products.filter(function(item){
+        return item.price > 0;
+    })
+
     // Correr um loop pelo array de produtos e criar um elemento ("product-item") html para cada um deles
     products.forEach(function(product, index) {
         // criando o elemento HTML para os produtos individuais
@@ -220,8 +227,11 @@ function productsHandler() {
     });
 
     let totalProducts = products.length;
-    document.querySelector(".products-filter label[for=all] span.product-amount").textContent = totalProducts;
-}
+    document.querySelector(".products-filter label[for=all] span.product-amount").textContent = products.length;
+    document.querySelector(".products-filter label[for=paid] span.product-amount").textContent = paidProducts.length;
+    document.querySelector(".products-filter label[for=free] span.product-amount").textContent = freeProducts.length;
+}    
+ 
 
 // Carregamento da página
 menuHandler();
