@@ -254,6 +254,10 @@ function footerHandler() {
     document.querySelector("footer").textContent = `© ${currentYear} - All Rights Reserved`;
 }
 
+navigator.geolocation.getCurrentPosition(function(position){
+    console.log(position);
+});
+
 // Carregamento da página
 menuHandler();
 clockHandler();
