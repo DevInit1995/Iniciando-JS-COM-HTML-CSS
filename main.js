@@ -61,7 +61,6 @@ const products = [
       }
     ];
 
-
 // seção menu
 function menuHandler() {
     // abrir e fechar o menu
@@ -97,21 +96,9 @@ function greetingHandler() {
     
     //alert("The temperature outside is " + celsiusToFahr(temperature) + "°F.");
 
-    let celsiusText = `The weather is ${weatherCondition} in ${userLocations} and it's ${temperature.toFixed(1)}°C outside.`;
-    let fahrText = `The weather is ${weatherCondition} in ${userLocations} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
-
     document.querySelector("#greeting").innerHTML = greetingText;
-    document.querySelector("p#weather").innerHTML = celsiusText;
 
-    document.querySelector(".weather-group").addEventListener("click", function(e){
-        // celsius
-        // fahr
-        if (e.target.id == "celsius") {
-            document.querySelector("p#weather").innerHTML = celsiusText;
-        } else if (e.target.id == "fahr") {
-            document.querySelector("p#weather").innerHTML = fahrText;;
-        }
-    });
+
 }
 
 // sessão de relógio
@@ -250,30 +237,48 @@ function footerHandler() {
     document.querySelector("footer").textContent = `© ${currentYear} - All Rights Reserved`;
 }
 
-navigator.geolocation.getCurrentPosition( position => {
-    console.log(position);
-
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-    let url = weatherAPIURL
-        .replace("{lat}", latitude)
-        .replace("{lon}", longitude)
-        .replace("{API Key}", weatherAPIKey);
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        const condition = "sunny";
-        const location = "Rio de Janeiro";
-        let temperature = 30;
+function weatherHandler() {
+    navigator.geolocation.getCurrentPosition( position => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        let url = weatherAPIURL
+            .replace("{lat}", latitude)
+            .replace("{lon}", longitude)
+            .replace("{API Key}", weatherAPIKey);
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const condition = data.weather[0].description;
+            const location = data.name;
+            let temperature = data.main.temp;
+    
+        let celsiusText = `The weather is ${condition} in ${location} and it's ${temperature.toFixed(1)}°C outside.`;
+        let fahrText = `The weather is ${condition} in ${location} and it's ${celsiusToFahr(temperature).toFixed(1)}°F outside.`;
+        
+        document.querySelector("p#weather").innerHTML = celsiusText;
+    
+        //Swicth temperatura
+        document.querySelector(".weather-group").addEventListener("click", function(e){
+            // celsius
+            // fahr
+            if (e.target.id == "celsius") {
+                document.querySelector("p#weather").innerHTML = celsiusText;
+            } else if (e.target.id == "fahr") {
+                document.querySelector("p#weather").innerHTML = fahrText;;
+            }
+        });
+    
+        });
     });
-});
+}
 
 // Carregamento da página
 menuHandler();
-clockHandler();
 greetingHandler();
+weatherHandler()
+clockHandler();
 galleryHandler();
 productsHandler();
 footerHandler();
+
 
